@@ -1,0 +1,9 @@
+{
+  "name": "lenovo-ticket-system",
+  "private": true,
+  "scripts": {
+    "dev": "npm --prefix LenovoSmartFix.Web run dev --",
+    "build:web": "npm --prefix LenovoSmartFix.Web run build",
+    "preview:web": "npm --prefix LenovoSmartFix.Web run preview"
+  }
+}

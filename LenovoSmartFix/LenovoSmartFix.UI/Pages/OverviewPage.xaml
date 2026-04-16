@@ -1,0 +1,83 @@
+<Page
+    x:Class="LenovoSmartFix.UI.Pages.OverviewPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Background="{StaticResource SurfaceBackgroundBrush}">
+
+    <ScrollViewer Padding="32">
+        <StackPanel MaxWidth="680" Spacing="24">
+
+            <!-- Hero card -->
+            <Border Style="{StaticResource SmartFixCard}">
+                <StackPanel Spacing="8">
+                    <StackPanel Orientation="Horizontal" Spacing="10">
+                        <Border Width="4" Height="28" Background="{StaticResource LenovoRedBrush}" />
+                        <TextBlock Text="Lenovo SmartFix"
+                                   FontSize="22" FontWeight="Bold"
+                                   Foreground="{StaticResource TextPrimaryBrush}"
+                                   VerticalAlignment="Center" />
+                    </StackPanel>
+                    <TextBlock Text="Pre-Support Resolution  ·  Scan your device before contacting support."
+                               FontSize="13" Foreground="{StaticResource TextSecondaryBrush}" />
+
+                    <TextBlock Margin="0,8,0,0"
+                               Text="SmartFix checks your device health, validates your software stack, and either resolves the issue automatically or prepares a structured support packet."
+                               FontSize="12" Foreground="{StaticResource TextSecondaryBrush}"
+                               TextWrapping="Wrap" />
+                </StackPanel>
+            </Border>
+
+            <!-- Symptom selector -->
+            <Border Style="{StaticResource SmartFixCard}">
+                <StackPanel Spacing="12">
+                    <TextBlock Text="What issue are you experiencing?"
+                               Style="{StaticResource SectionHeader}" />
+
+                    <ComboBox x:Name="SymptomCombo"
+                              HorizontalAlignment="Stretch"
+                              ItemsSource="{x:Bind ViewModel.SymptomOptions}"
+                              SelectedItem="{x:Bind ViewModel.SelectedSymptom, Mode=TwoWay}"
+                              FontSize="13" />
+
+                    <Button x:Name="StartScanButton"
+                            Content="Scan My Device"
+                            HorizontalAlignment="Stretch"
+                            Height="44"
+                            FontSize="14" FontWeight="SemiBold"
+                            Background="{StaticResource LenovoRedBrush}"
+                            Foreground="White"
+                            CornerRadius="0"
+                            Command="{x:Bind ViewModel.StartScanCommand}" />
+                </StackPanel>
+            </Border>
+
+            <!-- What SmartFix checks -->
+            <Border Style="{StaticResource SmartFixCard}">
+                <StackPanel Spacing="10">
+                    <TextBlock Text="What SmartFix checks" Style="{StaticResource SectionHeader}" />
+                    <ItemsControl>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" Spacing="8" Margin="0,3">
+                                    <TextBlock Text="·" Foreground="{StaticResource LenovoRedBrush}" FontWeight="Bold" />
+                                    <TextBlock Text="{Binding}" FontSize="12"
+                                               Foreground="{StaticResource TextSecondaryBrush}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                        <x:String>Device identity and software stack</x:String>
+                        <x:String>Battery, disk, memory, and CPU health</x:String>
+                        <x:String>BIOS, firmware, driver, and utility update status</x:String>
+                        <x:String>Wi-Fi stability and crash history</x:String>
+                        <x:String>Safe automated fixes where possible</x:String>
+                    </ItemsControl>
+                </StackPanel>
+            </Border>
+
+            <!-- Privacy notice -->
+            <TextBlock FontSize="11" Foreground="{StaticResource TextSecondaryBrush}"
+                       TextWrapping="Wrap"
+                       Text="All scanning and diagnosis stays on your device. Nothing is uploaded unless you explicitly share an escalation packet." />
+        </StackPanel>
+    </ScrollViewer>
+</Page>
